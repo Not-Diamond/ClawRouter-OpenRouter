@@ -12,7 +12,7 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 
 </div>
 
-> **This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)**, a super cool weighted regex classification system that runs at lightning speed. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets. If crypto x ai excited you, go check out the original repo!
+> **This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)**, a super cool weighted regex classification system that runs at lightning speed. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets. If crypto x ai excited you, go check out the original repo! For a more intelligent routing endpoint, you can use [`openrouter/auto`](https://openrouter.ai/models/openrouter/auto) (powered by Not Diamond), a general-purpose model router built directly into OpenRouter."
 
 ---
 
@@ -23,8 +23,6 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 "Prove this theorem"      → GPT-5.2              $1.75/M    reasoning
 "Run 50 parallel searches"→ Kimi K2.5            $0.45/M    agentic swarm
 ```
-
-> **Want something simpler?** [`openrouter/auto`](https://openrouter.ai/models/openrouter/auto) (powered by Not Diamond) is a general-purpose model router built into OpenRouter — no plugin needed. SimpleClawRouter gives you full local control over the routing logic.
 
 ## Why ClawRouter?
 
