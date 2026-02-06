@@ -89,8 +89,8 @@ export const ROUTER_MODELS: RouterModel[] = [
     reasoning: true,
   },
   {
-    id: "anthropic/claude-opus-4.5",
-    name: "Claude Opus 4.5",
+    id: "anthropic/claude-opus-4.6",
+    name: "Claude Opus 4.6",
     inputPrice: 5.0,
     outputPrice: 25.0,
     contextWindow: 200_000,

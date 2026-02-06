@@ -183,12 +183,12 @@ export const DEFAULT_ROUTING_CONFIG: RoutingConfig = {
       fallback: ["deepseek/deepseek-v3.2", "openai/gpt-5.1-codex-mini"],
     },
     COMPLEX: {
-      primary: "anthropic/claude-opus-4.5",
+      primary: "anthropic/claude-opus-4.6",
       fallback: ["openai/gpt-5.2", "google/gemini-3-pro-preview"],
     },
     REASONING: {
       primary: "openai/gpt-5.2",
-      fallback: ["google/gemini-3-pro-preview", "anthropic/claude-opus-4.5"],
+      fallback: ["google/gemini-3-pro-preview", "anthropic/claude-opus-4.6"],
     },
   },
 
