@@ -17,10 +17,10 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 ---
 
 ```
-"What is 2+2?"            → DeepSeek V3.2        $0.25/M    saved 99%
+"What is 2+2?"            → Gemini 2.5 Flash Lite $0.10/M    saved 99%
 "Summarize this article"  → Gemini 3 Flash       $0.50/M    saved 98%
 "Build a React component" → Claude Opus 4.6      $5.00/M    best balance
-"Prove this theorem"      → GPT-5.2              $1.75/M    reasoning
+"Prove this theorem"      → Claude Opus 4.6      $5.00/M    reasoning
 "Run 50 parallel searches"→ Kimi K2.5            $0.45/M    agentic swarm
 ```
 
@@ -106,10 +106,10 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 
 | Tier      | Primary Model       | Cost/M | Savings vs Opus |
 | --------- | ------------------- | ------ | --------------- |
-| SIMPLE    | DeepSeek V3.2       | $0.25  | **99.5%**       |
-| MEDIUM    | Gemini 3 Flash      | $0.50  | **98%**         |
-| COMPLEX   | Claude Opus 4.6     | $5.00  | baseline        |
-| REASONING | GPT-5.2             | $1.75  | **93%**         |
+| SIMPLE    | Gemini 2.5 Flash Lite | $0.10  | **99.8%**       |
+| MEDIUM    | Gemini 3 Flash        | $0.50  | **98%**         |
+| COMPLEX   | Claude Opus 4.6       | $5.00  | baseline        |
+| REASONING | Claude Opus 4.6       | $5.00  | baseline        |
 
 ---
 
