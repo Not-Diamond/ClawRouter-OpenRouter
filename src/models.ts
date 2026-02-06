@@ -88,15 +88,6 @@ export const ROUTER_MODELS: RouterModel[] = [
     maxOutput: 32_000,
     reasoning: true,
   },
-  {
-    id: "anthropic/claude-opus-4.6",
-    name: "Claude Opus 4.6",
-    inputPrice: 5.0,
-    outputPrice: 25.0,
-    contextWindow: 200_000,
-    maxOutput: 32_000,
-    reasoning: true,
-  },
 
   // Google Gemini
   {
