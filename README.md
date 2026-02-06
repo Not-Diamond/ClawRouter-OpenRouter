@@ -349,8 +349,8 @@ lsof -i :8402
 ## Development
 
 ```bash
-git clone https://github.com/Not-Diamond/ClawRouter-OpenRouter.git
-cd ClawRouter-OpenRouter
+git clone https://github.com/Not-Diamond/SimpleClawRouter.git
+cd SimpleClawRouter
 npm install
 npm run build
 npm run typecheck
