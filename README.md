@@ -1,10 +1,10 @@
 <div align="center">
 
-# ClawRouter for OpenRouter
+# SimpleClawRouter
 
-**Save 78% on LLM costs. Automatically.**
+**Save 10x on LLM costs. Automatically.**
 
-Route every request to the cheapest model that can handle it — powered by [OpenRouter](https://openrouter.ai).
+Route every request to the cheapest model that can handle it with ultra-fast local regex routing using your [OpenRouter](https://openrouter.ai) key.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://typescriptlang.org)
@@ -12,7 +12,7 @@ Route every request to the cheapest model that can handle it — powered by [Ope
 
 </div>
 
-> **Fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)** — a really well-built smart LLM router with 14-dimension weighted scoring. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets.
+> **This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)**, a super cool weighted regex classification system that runs at lightning speed. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets. If crypto x ai excited you, go check out the original repo!
 
 ---
 
@@ -27,7 +27,6 @@ Route every request to the cheapest model that can handle it — powered by [Ope
 ## Why ClawRouter?
 
 - **100% local routing** — 14-dimension weighted scoring runs on your machine in <1ms
-- **Zero external calls** — no API calls for routing decisions, ever
 - **20+ models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, Mistral, Amazon via OpenRouter
 - **Standard API key** — just set `OPENROUTER_API_KEY` and go
 - **Open source** — MIT licensed, fully inspectable routing logic
@@ -70,7 +69,7 @@ Want a specific model? Use `openai/gpt-5.2` or `anthropic/claude-opus-4.6` direc
 
 ## How Routing Works
 
-**100% local, <1ms, zero API calls.**
+**100% local, <1ms**
 
 ```
 Request → Weighted Scorer (14 dimensions)
@@ -80,7 +79,7 @@ Request → Weighted Scorer (14 dimensions)
               └── Low confidence → Default to MEDIUM tier → Done
 ```
 
-No external classifier calls. Ambiguous queries default to the MEDIUM tier (Gemini 3 Flash) — fast, cheap, and good enough for most tasks.
+Routing is done through regex + weighted multi-class classification:
 
 ### 14-Dimension Weighted Scoring
 
@@ -111,8 +110,6 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 | MEDIUM    | Gemini 3 Flash      | $0.50  | **98%**         |
 | COMPLEX   | Claude Opus 4.6     | $5.00  | baseline        |
 | REASONING | GPT-5.2             | $1.75  | **93%**         |
-
-Special rule: 2+ reasoning markers → REASONING at 0.97 confidence.
 
 ---
 
@@ -290,7 +287,7 @@ console.log(decision);
 
 ## Differences from the Original
 
-This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter). The original is a really impressive project that uses x402 micropayments with USDC on Base for pay-per-request LLM inference — no API keys needed, just a crypto wallet.
+This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter). The original is very cool! It uses x402 micropayments with USDC on Base for pay-per-request LLM inference — no API keys needed, just a crypto wallet.
 
 This fork replaces that payment layer with [OpenRouter](https://openrouter.ai), which gives you:
 
