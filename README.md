@@ -17,17 +17,19 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 ---
 
 ```
-"What is 2+2?"            → DeepSeek V3.2      $0.25/M    saved 99%
-"Summarize this article"  → Gemini 3 Flash     $0.50/M    saved 99%
-"Build a React component" → Claude Opus 4.6    $5.00/M    best balance
-"Prove this theorem"      → GPT-5.2            $1.75/M    reasoning
-"Run 50 parallel searches"→ Kimi K2.5          $0.45/M    agentic swarm
+"What is 2+2?"            → DeepSeek V3.2        $0.25/M    saved 99%
+"Summarize this article"  → Gemini 3 Flash       $0.50/M    saved 98%
+"Build a React component" → Claude Opus 4.6      $5.00/M    best balance
+"Prove this theorem"      → GPT-5.2              $1.75/M    reasoning
+"Run 50 parallel searches"→ Kimi K2.5            $0.45/M    agentic swarm
 ```
+
+> **Want something simpler?** [`openrouter/auto`](https://openrouter.ai/models/openrouter/auto) (powered by Not Diamond) is a general-purpose model router built into OpenRouter — no plugin needed. SimpleClawRouter gives you full local control over the routing logic.
 
 ## Why ClawRouter?
 
 - **100% local routing** — 14-dimension weighted scoring runs on your machine in <1ms
-- **20+ models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, Mistral, Amazon via OpenRouter
+- **15 models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, MiniMax, Z.AI, Arcee via OpenRouter
 - **Standard API key** — just set `OPENROUTER_API_KEY` and go
 - **Open source** — MIT licensed, fully inspectable routing logic
 
@@ -115,35 +117,34 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 
 ## Models
 
-20+ models across 8 providers, one API key:
+15 models across 9 providers, one API key:
 
-| Model                   | Input $/M | Output $/M | Context | Reasoning |
-| ----------------------- | --------- | ---------- | ------- | :-------: |
-| **OpenAI**              |           |            |         |           |
-| gpt-5.2                 | $1.75     | $14.00     | 400K    |    \*     |
-| gpt-5.2-pro             | $21.00    | $168.00    | 400K    |    \*     |
-| gpt-5.2-codex           | $1.75     | $14.00     | 400K    |    \*     |
-| gpt-5.1                 | $1.25     | $10.00     | 400K    |    \*     |
-| gpt-5.1-codex-mini      | $0.25     | $2.00      | 200K    |           |
-| **Anthropic**           |           |            |         |           |
-| claude-opus-4.6         | $5.00     | $25.00     | 200K    |    \*     |
-| **Google**              |           |            |         |           |
-| gemini-3-pro-preview    | $2.00     | $12.00     | 1M      |    \*     |
-| gemini-3-flash-preview  | $0.50     | $3.00      | 1M      |           |
-| **DeepSeek**            |           |            |         |           |
-| deepseek-v3.2           | $0.25     | $0.38      | 128K    |           |
-| deepseek-v3.2-speciale  | $0.27     | $0.41      | 128K    |    \*     |
-| **Moonshot**            |           |            |         |           |
-| kimi-k2.5               | $0.45     | $2.50      | 262K    |    \*     |
-| kimi-k2-thinking        | $0.40     | $1.75      | 262K    |    \*     |
-| **xAI**                 |           |            |         |           |
-| grok-4.1-fast           | $0.20     | $0.50      | 131K    |    \*     |
-| **Mistral**             |           |            |         |           |
-| mistral-large-2512      | $0.50     | $1.50      | 128K    |    \*     |
-| **Amazon**              |           |            |         |           |
-| nova-premier-v1         | $2.50     | $12.50     | 128K    |    \*     |
-| **Writer**              |           |            |         |           |
-| palmyra-x5              | $0.60     | $6.00      | 128K    |           |
+| Model                        | Input $/M | Output $/M | Context | Reasoning |
+| ---------------------------- | --------- | ---------- | ------- | :-------: |
+| **Google**                   |           |            |         |           |
+| gemini-3-flash-preview       | $0.50     | $3.00      | 1M      |    \*     |
+| gemini-3-pro-preview         | $2.00     | $12.00     | 1M      |    \*     |
+| gemini-2.5-flash-lite        | $0.10     | $0.40      | 1M      |    \*     |
+| **Anthropic**                |           |            |         |           |
+| claude-sonnet-4.5            | $3.00     | $15.00     | 1M      |    \*     |
+| claude-opus-4.6              | $5.00     | $25.00     | 200K    |    \*     |
+| **OpenAI**                   |           |            |         |           |
+| gpt-5.2                      | $1.75     | $14.00     | 400K    |    \*     |
+| gpt-5-nano                   | $0.05     | $0.40      | 400K    |    \*     |
+| **xAI**                      |           |            |         |           |
+| grok-4.1-fast                | $0.20     | $0.50      | 2M      |    \*     |
+| grok-4-fast                  | $0.20     | $0.50      | 2M      |    \*     |
+| grok-code-fast-1             | $0.20     | $1.50      | 256K    |    \*     |
+| **DeepSeek**                 |           |            |         |           |
+| deepseek-v3.2                | $0.25     | $0.38      | 164K    |    \*     |
+| **Moonshot**                 |           |            |         |           |
+| kimi-k2.5                    | $0.45     | $2.50      | 262K    |    \*     |
+| **MiniMax**                  |           |            |         |           |
+| minimax-m2.1                 | $0.27     | $0.95      | 197K    |    \*     |
+| **Z.AI**                     |           |            |         |           |
+| glm-4.7                      | $0.40     | $1.50      | 203K    |    \*     |
+| **Arcee AI**                 |           |            |         |           |
+| trinity-large-preview (free) | $0.00     | $0.00      | 131K    |           |
 
 Full list: [`src/models.ts`](src/models.ts)
 
@@ -168,7 +169,7 @@ Full list: [`src/models.ts`](src/models.ts)
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                      OpenRouter API                          │
-│  → OpenAI | Anthropic | Google | DeepSeek | xAI | Mistral   │
+│  → OpenAI | Anthropic | Google | DeepSeek | xAI | Moonshot   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -181,7 +182,7 @@ src/
 ├── index.ts          # Plugin entry point
 ├── provider.ts       # OpenClaw provider registration
 ├── proxy.ts          # Local HTTP proxy + Bearer auth
-├── models.ts         # 20+ model definitions with pricing
+├── models.ts         # 15 model definitions with pricing
 ├── auth.ts           # API key resolution
 ├── logger.ts         # JSON usage logging
 ├── dedup.ts          # Response deduplication (prevents double-charge)
