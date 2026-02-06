@@ -1,7 +1,7 @@
 {
-  "name": "@blockrun/clawrouter",
-  "version": "0.3.7",
-  "description": "Smart LLM router — save 78% on inference costs. 30+ models, one wallet, x402 micropayments.",
+  "name": "clawrouter-openrouter",
+  "version": "0.4.0",
+  "description": "Smart LLM router for OpenRouter — save 78% on inference costs. 30+ models, intelligent routing.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,24 +34,15 @@
     "smart-routing",
     "ai",
     "openclaw",
-    "blockrun",
-    "x402",
-    "usdc",
+    "openrouter",
     "cost-optimization",
     "openai",
     "anthropic",
     "gemini",
     "deepseek"
   ],
-  "author": "BlockRun <hello@blockrun.ai>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BlockRunAI/ClawRouter.git"
-  },
-  "dependencies": {
-    "viem": "^2.39.3"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "openclaw": ">=2025.1.0"
   },
