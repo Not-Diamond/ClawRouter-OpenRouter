@@ -107,7 +107,7 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 | Tier      | Primary Model       | Cost/M | Savings vs Opus |
 | --------- | ------------------- | ------ | --------------- |
 | SIMPLE    | Gemini 2.5 Flash Lite | $0.10  | **99.8%**       |
-| MEDIUM    | Gemini 3 Flash        | $0.50  | **98%**         |
+| MEDIUM    | Gemini 3 Flash        | $0.50  | **90%**         |
 | COMPLEX   | Claude Opus 4.6       | $5.00  | baseline        |
 | REASONING | Claude Opus 4.6       | $5.00  | baseline        |
 
