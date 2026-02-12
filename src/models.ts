@@ -1,16 +1,15 @@
 /**
- * BlockRun Model Definitions for OpenClaw
+ * OpenRouter Model Definitions for OpenClaw
  *
- * Maps BlockRun's 30+ AI models to OpenClaw's ModelDefinitionConfig format.
- * All models use the "openai-completions" API since BlockRun is OpenAI-compatible.
+ * Maps OpenRouter's AI models to OpenClaw's ModelDefinitionConfig format.
+ * All models use the "openai-completions" API since OpenRouter is OpenAI-compatible.
  *
- * Pricing is in USD per 1M tokens. Operators pay these rates via x402;
- * they set their own markup when reselling to end users (Phase 2).
+ * Pricing is in USD per 1M tokens (sourced from OpenRouter's /api/v1/models endpoint).
  */
 
 import type { ModelDefinitionConfig, ModelProviderConfig } from "./types.js";
 
-type BlockRunModel = {
+export type RouterModel = {
   id: string;
   name: string;
   inputPrice: number;
@@ -21,276 +20,210 @@ type BlockRunModel = {
   vision?: boolean;
 };
 
-export const BLOCKRUN_MODELS: BlockRunModel[] = [
-  // Smart routing meta-model — proxy replaces with actual model
+export const ROUTER_MODELS: RouterModel[] = [
+  // Smart routing meta-model -- proxy replaces with actual model
   {
-    id: "blockrun/auto",
-    name: "BlockRun Smart Router",
+    id: "clawrouter/auto",
+    name: "ClawRouter Smart Router",
     inputPrice: 0,
     outputPrice: 0,
-    contextWindow: 1_050_000,
+    contextWindow: 2_000_000,
     maxOutput: 128_000,
   },
 
-  // OpenAI GPT-5 Family
+  // --- Top models by usage on OpenRouter (ranked by tokens served) ---
+
+  // #1 — Google Gemini 3 Flash Preview
   {
-    id: "openai/gpt-5.2",
-    name: "GPT-5.2",
-    inputPrice: 1.75,
-    outputPrice: 14.0,
-    contextWindow: 400000,
-    maxOutput: 128000,
+    id: "google/gemini-3-flash-preview",
+    name: "Gemini 3 Flash Preview",
+    inputPrice: 0.5,
+    outputPrice: 3.0,
+    contextWindow: 1_048_576,
+    maxOutput: 65_535,
     reasoning: true,
     vision: true,
   },
+
+  // #2 — Anthropic Claude Sonnet 4.5
   {
-    id: "openai/gpt-5-mini",
-    name: "GPT-5 Mini",
-    inputPrice: 0.25,
-    outputPrice: 2.0,
-    contextWindow: 200000,
-    maxOutput: 65536,
+    id: "anthropic/claude-sonnet-4.5",
+    name: "Claude Sonnet 4.5",
+    inputPrice: 3.0,
+    outputPrice: 15.0,
+    contextWindow: 1_000_000,
+    maxOutput: 64_000,
+    reasoning: true,
+    vision: true,
   },
+
+  // #3 — Moonshot Kimi K2.5
+  {
+    id: "moonshotai/kimi-k2.5",
+    name: "Kimi K2.5",
+    inputPrice: 0.45,
+    outputPrice: 2.5,
+    contextWindow: 262_144,
+    maxOutput: 65_535,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #4 — DeepSeek V3.2
+  {
+    id: "deepseek/deepseek-v3.2",
+    name: "DeepSeek V3.2",
+    inputPrice: 0.25,
+    outputPrice: 0.38,
+    contextWindow: 163_840,
+    maxOutput: 65_536,
+    reasoning: true,
+  },
+
+  // #5 — Google Gemini 2.5 Flash Lite
+  {
+    id: "google/gemini-2.5-flash-lite",
+    name: "Gemini 2.5 Flash Lite",
+    inputPrice: 0.1,
+    outputPrice: 0.4,
+    contextWindow: 1_048_576,
+    maxOutput: 65_535,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #6 — Anthropic Claude Opus 4.6
+  {
+    id: "anthropic/claude-opus-4.6",
+    name: "Claude Opus 4.6",
+    inputPrice: 5.0,
+    outputPrice: 25.0,
+    contextWindow: 200_000,
+    maxOutput: 64_000,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #7 — MiniMax M2.1
+  {
+    id: "minimax/minimax-m2.1",
+    name: "MiniMax M2.1",
+    inputPrice: 0.27,
+    outputPrice: 0.95,
+    contextWindow: 196_608,
+    maxOutput: 65_536,
+    reasoning: true,
+  },
+
+  // #8 — xAI Grok Code Fast 1
+  {
+    id: "x-ai/grok-code-fast-1",
+    name: "Grok Code Fast 1",
+    inputPrice: 0.2,
+    outputPrice: 1.5,
+    contextWindow: 256_000,
+    maxOutput: 10_000,
+    reasoning: true,
+  },
+
+  // #9 — xAI Grok 4.1 Fast
+  {
+    id: "x-ai/grok-4.1-fast",
+    name: "Grok 4.1 Fast",
+    inputPrice: 0.2,
+    outputPrice: 0.5,
+    contextWindow: 2_000_000,
+    maxOutput: 30_000,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #10 — Arcee AI Trinity Large Preview (free)
+  {
+    id: "arcee-ai/trinity-large-preview:free",
+    name: "Trinity Large Preview (free)",
+    inputPrice: 0,
+    outputPrice: 0,
+    contextWindow: 131_000,
+    maxOutput: 65_536,
+  },
+
+  // #11 — OpenAI GPT-5 Nano
   {
     id: "openai/gpt-5-nano",
     name: "GPT-5 Nano",
     inputPrice: 0.05,
     outputPrice: 0.4,
-    contextWindow: 128000,
-    maxOutput: 32768,
-  },
-  {
-    id: "openai/gpt-5.2-pro",
-    name: "GPT-5.2 Pro",
-    inputPrice: 21.0,
-    outputPrice: 168.0,
-    contextWindow: 400000,
-    maxOutput: 128000,
+    contextWindow: 400_000,
+    maxOutput: 128_000,
     reasoning: true,
-  },
-
-  // OpenAI GPT-4 Family
-  {
-    id: "openai/gpt-4.1",
-    name: "GPT-4.1",
-    inputPrice: 2.0,
-    outputPrice: 8.0,
-    contextWindow: 128000,
-    maxOutput: 16384,
     vision: true,
   },
+
+  // #12 — Z.AI GLM 4.7
   {
-    id: "openai/gpt-4.1-mini",
-    name: "GPT-4.1 Mini",
+    id: "z-ai/glm-4.7",
+    name: "GLM 4.7",
     inputPrice: 0.4,
-    outputPrice: 1.6,
-    contextWindow: 128000,
-    maxOutput: 16384,
-  },
-  {
-    id: "openai/gpt-4.1-nano",
-    name: "GPT-4.1 Nano",
-    inputPrice: 0.1,
-    outputPrice: 0.4,
-    contextWindow: 128000,
-    maxOutput: 16384,
-  },
-  {
-    id: "openai/gpt-4o",
-    name: "GPT-4o",
-    inputPrice: 2.5,
-    outputPrice: 10.0,
-    contextWindow: 128000,
-    maxOutput: 16384,
-    vision: true,
-  },
-  {
-    id: "openai/gpt-4o-mini",
-    name: "GPT-4o Mini",
-    inputPrice: 0.15,
-    outputPrice: 0.6,
-    contextWindow: 128000,
-    maxOutput: 16384,
-  },
-
-  // OpenAI O-series (Reasoning)
-  {
-    id: "openai/o1",
-    name: "o1",
-    inputPrice: 15.0,
-    outputPrice: 60.0,
-    contextWindow: 200000,
-    maxOutput: 100000,
-    reasoning: true,
-  },
-  {
-    id: "openai/o1-mini",
-    name: "o1-mini",
-    inputPrice: 1.1,
-    outputPrice: 4.4,
-    contextWindow: 128000,
-    maxOutput: 65536,
-    reasoning: true,
-  },
-  {
-    id: "openai/o3",
-    name: "o3",
-    inputPrice: 2.0,
-    outputPrice: 8.0,
-    contextWindow: 200000,
-    maxOutput: 100000,
-    reasoning: true,
-  },
-  {
-    id: "openai/o3-mini",
-    name: "o3-mini",
-    inputPrice: 1.1,
-    outputPrice: 4.4,
-    contextWindow: 128000,
-    maxOutput: 65536,
-    reasoning: true,
-  },
-  {
-    id: "openai/o4-mini",
-    name: "o4-mini",
-    inputPrice: 1.1,
-    outputPrice: 4.4,
-    contextWindow: 128000,
-    maxOutput: 65536,
+    outputPrice: 1.5,
+    contextWindow: 202_752,
+    maxOutput: 65_535,
     reasoning: true,
   },
 
-  // Anthropic
-  {
-    id: "anthropic/claude-haiku-4.5",
-    name: "Claude Haiku 4.5",
-    inputPrice: 1.0,
-    outputPrice: 5.0,
-    contextWindow: 200000,
-    maxOutput: 8192,
-  },
-  {
-    id: "anthropic/claude-sonnet-4",
-    name: "Claude Sonnet 4",
-    inputPrice: 3.0,
-    outputPrice: 15.0,
-    contextWindow: 200000,
-    maxOutput: 64000,
-    reasoning: true,
-  },
-  {
-    id: "anthropic/claude-opus-4",
-    name: "Claude Opus 4",
-    inputPrice: 15.0,
-    outputPrice: 75.0,
-    contextWindow: 200000,
-    maxOutput: 32000,
-    reasoning: true,
-  },
-  {
-    id: "anthropic/claude-opus-4.5",
-    name: "Claude Opus 4.5",
-    inputPrice: 5.0,
-    outputPrice: 25.0,
-    contextWindow: 200000,
-    maxOutput: 32000,
-    reasoning: true,
-  },
-
-  // Google
+  // #13 — Google Gemini 3 Pro Preview
   {
     id: "google/gemini-3-pro-preview",
     name: "Gemini 3 Pro Preview",
     inputPrice: 2.0,
     outputPrice: 12.0,
-    contextWindow: 1050000,
-    maxOutput: 65536,
+    contextWindow: 1_048_576,
+    maxOutput: 65_536,
     reasoning: true,
     vision: true,
   },
+
+  // #14 — xAI Grok 4 Fast
   {
-    id: "google/gemini-2.5-pro",
-    name: "Gemini 2.5 Pro",
+    id: "x-ai/grok-4-fast",
+    name: "Grok 4 Fast",
+    inputPrice: 0.2,
+    outputPrice: 0.5,
+    contextWindow: 2_000_000,
+    maxOutput: 30_000,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #15 — OpenAI GPT-5.1 Codex
+  {
+    id: "openai/gpt-5.1-codex",
+    name: "GPT-5.1 Codex",
     inputPrice: 1.25,
     outputPrice: 10.0,
-    contextWindow: 1050000,
-    maxOutput: 65536,
-    reasoning: true,
-    vision: true,
-  },
-  {
-    id: "google/gemini-2.5-flash",
-    name: "Gemini 2.5 Flash",
-    inputPrice: 0.15,
-    outputPrice: 0.6,
-    contextWindow: 1000000,
-    maxOutput: 65536,
-  },
-
-  // DeepSeek
-  {
-    id: "deepseek/deepseek-chat",
-    name: "DeepSeek V3.2 Chat",
-    inputPrice: 0.28,
-    outputPrice: 0.42,
-    contextWindow: 128000,
-    maxOutput: 8192,
-  },
-  {
-    id: "deepseek/deepseek-reasoner",
-    name: "DeepSeek V3.2 Reasoner",
-    inputPrice: 0.28,
-    outputPrice: 0.42,
-    contextWindow: 128000,
-    maxOutput: 8192,
-    reasoning: true,
-  },
-
-  // Moonshot / Kimi
-  {
-    id: "moonshot/kimi-k2.5",
-    name: "Kimi K2.5",
-    inputPrice: 0.5,
-    outputPrice: 2.4,
-    contextWindow: 262144,
-    maxOutput: 8192,
+    contextWindow: 400_000,
+    maxOutput: 128_000,
     reasoning: true,
     vision: true,
   },
 
-  // xAI / Grok
+  // #16 — OpenAI GPT-5.2
   {
-    id: "xai/grok-3",
-    name: "Grok 3",
-    inputPrice: 3.0,
-    outputPrice: 15.0,
-    contextWindow: 131072,
-    maxOutput: 16384,
+    id: "openai/gpt-5.2",
+    name: "GPT-5.2",
+    inputPrice: 1.75,
+    outputPrice: 14.0,
+    contextWindow: 400_000,
+    maxOutput: 128_000,
     reasoning: true,
-  },
-  {
-    id: "xai/grok-3-fast",
-    name: "Grok 3 Fast",
-    inputPrice: 5.0,
-    outputPrice: 25.0,
-    contextWindow: 131072,
-    maxOutput: 16384,
-    reasoning: true,
-  },
-  {
-    id: "xai/grok-3-mini",
-    name: "Grok 3 Mini",
-    inputPrice: 0.3,
-    outputPrice: 0.5,
-    contextWindow: 131072,
-    maxOutput: 16384,
+    vision: true,
   },
 ];
 
 /**
- * Convert BlockRun model definitions to OpenClaw ModelDefinitionConfig format.
+ * Convert router model definitions to OpenClaw ModelDefinitionConfig format.
  */
-function toOpenClawModel(m: BlockRunModel): ModelDefinitionConfig {
+function toOpenClawModel(m: RouterModel): ModelDefinitionConfig {
   return {
     id: m.id,
     name: m.name,
@@ -309,12 +242,12 @@ function toOpenClawModel(m: BlockRunModel): ModelDefinitionConfig {
 }
 
 /**
- * All BlockRun models in OpenClaw format.
+ * All router models in OpenClaw format.
  */
-export const OPENCLAW_MODELS: ModelDefinitionConfig[] = BLOCKRUN_MODELS.map(toOpenClawModel);
+export const OPENCLAW_MODELS: ModelDefinitionConfig[] = ROUTER_MODELS.map(toOpenClawModel);
 
 /**
- * Build a ModelProviderConfig for BlockRun.
+ * Build a ModelProviderConfig for OpenRouter.
  *
  * @param baseUrl - The proxy's local base URL (e.g., "http://127.0.0.1:12345")
  */

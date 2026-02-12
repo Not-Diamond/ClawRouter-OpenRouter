@@ -33,8 +33,8 @@ export function selectModel(
   const outputCost = pricing ? (maxOutputTokens / 1_000_000) * pricing.outputPrice : 0;
   const costEstimate = inputCost + outputCost;
 
-  // Baseline: what Claude Opus would cost (the premium default)
-  const opusPricing = modelPricing.get("anthropic/claude-opus-4");
+  // Baseline: what Claude Opus 4.6 would cost (the premium default)
+  const opusPricing = modelPricing.get("anthropic/claude-opus-4.6");
   const baselineInput = opusPricing
     ? (estimatedInputTokens / 1_000_000) * opusPricing.inputPrice
     : 0;

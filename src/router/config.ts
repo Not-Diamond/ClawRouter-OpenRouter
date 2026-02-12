@@ -13,7 +13,7 @@ export const DEFAULT_ROUTING_CONFIG: RoutingConfig = {
   version: "2.0",
 
   classifier: {
-    llmModel: "google/gemini-2.5-flash",
+    llmModel: "google/gemini-3-flash-preview",
     llmMaxTokens: 10,
     llmTemperature: 0,
     promptTruncationChars: 500,
@@ -175,20 +175,20 @@ export const DEFAULT_ROUTING_CONFIG: RoutingConfig = {
 
   tiers: {
     SIMPLE: {
-      primary: "google/gemini-2.5-flash",
-      fallback: ["deepseek/deepseek-chat", "openai/gpt-4o-mini"],
+      primary: "google/gemini-2.5-flash-lite",
+      fallback: ["openai/gpt-5-nano", "x-ai/grok-4.1-fast"],
     },
     MEDIUM: {
-      primary: "deepseek/deepseek-chat",
-      fallback: ["google/gemini-2.5-flash", "openai/gpt-4o-mini"],
+      primary: "google/gemini-3-flash-preview",
+      fallback: ["deepseek/deepseek-v3.2", "minimax/minimax-m2.1"],
     },
     COMPLEX: {
-      primary: "anthropic/claude-opus-4",
-      fallback: ["anthropic/claude-sonnet-4", "openai/gpt-4o"],
+      primary: "anthropic/claude-sonnet-4.5",
+      fallback: ["moonshotai/kimi-k2.5", "openai/gpt-5.2"],
     },
     REASONING: {
-      primary: "openai/o3",
-      fallback: ["google/gemini-2.5-pro", "anthropic/claude-sonnet-4"],
+      primary: "google/gemini-3-pro-preview",
+      fallback: ["openai/gpt-5.1-codex", "anthropic/claude-opus-4.6"],
     },
   },
 
