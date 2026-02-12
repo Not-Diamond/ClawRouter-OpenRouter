@@ -12,7 +12,7 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 
 </div>
 
-> **This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)**, a super cool weighted regex classification system that runs at lightning speed. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets. If crypto x ai excited you, go check out the original repo! For a more intelligent routing endpoint, you can use [`openrouter/auto`](https://openrouter.ai/models/openrouter/auto) (powered by Not Diamond), a general-purpose model router built directly into OpenRouter."
+> **This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter)**, a weighted regex classification based local router. This fork replaces the x402 crypto-wallet payment gateway with [OpenRouter](https://openrouter.ai), so you can use a standard API key instead of managing USDC wallets. If crypto x ai excites you, go check out the original repo! For a more intelligent routing endpoint, you can use [`openrouter/auto`](https://openrouter.ai/models/openrouter/auto) (powered by Not Diamond), a general-purpose model router built directly into OpenRouter."
 
 ---
 
@@ -24,7 +24,7 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 "Run 50 parallel searches"→ Kimi K2.5            $0.45/M    agentic swarm
 ```
 
-## Why ClawRouter?
+## Why SimpleClawRouter?
 
 - **100% local routing** — 14-dimension weighted scoring runs on your machine in <1ms
 - **16 models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, MiniMax, Z.AI, Arcee via OpenRouter
@@ -282,21 +282,6 @@ console.log(decision);
 
 - **SSE heartbeat**: Sends headers + heartbeat immediately, preventing upstream timeouts
 - **Response dedup**: SHA-256 hash → 30s cache, prevents double-charge on retries
-
----
-
-## Differences from the Original
-
-This is a fork of [BlockRun's ClawRouter](https://github.com/BlockRunAI/ClawRouter). The original is very cool! It uses x402 micropayments with USDC on Base for pay-per-request LLM inference — no API keys needed, just a crypto wallet.
-
-This fork replaces that payment layer with [OpenRouter](https://openrouter.ai), which gives you:
-
-- **Standard API key auth** instead of crypto wallet management
-- **No blockchain dependencies** (removed `viem`, x402, USDC balance monitoring)
-- **Same smart routing** — the 14-dimension classifier is unchanged
-- **Same optimizations** — dedup, streaming heartbeat, usage logging all preserved
-
-If you want the crypto-native approach, use the [original ClawRouter](https://github.com/BlockRunAI/ClawRouter).
 
 ---
 
