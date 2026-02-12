@@ -19,15 +19,15 @@ Route every request to the cheapest model that can handle it with ultra-fast loc
 ```
 "What is 2+2?"            → Gemini 2.5 Flash Lite $0.10/M    saved 99%
 "Summarize this article"  → Gemini 3 Flash       $0.50/M    saved 98%
-"Build a React component" → Claude Opus 4.6      $5.00/M    best balance
-"Prove this theorem"      → Claude Opus 4.6      $5.00/M    reasoning
+"Build a React component" → Claude Sonnet 4.5    $3.00/M    best balance
+"Prove this theorem"      → Gemini 3 Pro         $2.00/M    reasoning
 "Run 50 parallel searches"→ Kimi K2.5            $0.45/M    agentic swarm
 ```
 
 ## Why ClawRouter?
 
 - **100% local routing** — 14-dimension weighted scoring runs on your machine in <1ms
-- **15 models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, MiniMax, Z.AI, Arcee via OpenRouter
+- **16 models** — OpenAI, Anthropic, Google, DeepSeek, xAI, Moonshot, MiniMax, Z.AI, Arcee via OpenRouter
 - **Standard API key** — just set `OPENROUTER_API_KEY` and go
 - **Open source** — MIT licensed, fully inspectable routing logic
 
@@ -108,14 +108,14 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 | --------- | ------------------- | ------ | --------------- |
 | SIMPLE    | Gemini 2.5 Flash Lite | $0.10  | **99.8%**       |
 | MEDIUM    | Gemini 3 Flash        | $0.50  | **90%**         |
-| COMPLEX   | Claude Opus 4.6       | $5.00  | baseline        |
-| REASONING | Claude Opus 4.6       | $5.00  | baseline        |
+| COMPLEX   | Claude Sonnet 4.5     | $3.00  | **40%**         |
+| REASONING | Gemini 3 Pro          | $2.00  | **60%**         |
 
 ---
 
 ## Models
 
-15 models across 9 providers, one API key:
+16 models across 9 providers, one API key:
 
 | Model                        | Input $/M | Output $/M | Context | Reasoning |
 | ---------------------------- | --------- | ---------- | ------- | :-------: |
@@ -128,6 +128,7 @@ Weighted sum → sigmoid confidence calibration → tier selection.
 | claude-opus-4.6              | $5.00     | $25.00     | 200K    |    \*     |
 | **OpenAI**                   |           |            |         |           |
 | gpt-5.2                      | $1.75     | $14.00     | 400K    |    \*     |
+| gpt-5.1-codex                | $1.25     | $10.00     | 400K    |    \*     |
 | gpt-5-nano                   | $0.05     | $0.40      | 400K    |    \*     |
 | **xAI**                      |           |            |         |           |
 | grok-4.1-fast                | $0.20     | $0.50      | 2M      |    \*     |
@@ -180,7 +181,7 @@ src/
 ├── index.ts          # Plugin entry point
 ├── provider.ts       # OpenClaw provider registration
 ├── proxy.ts          # Local HTTP proxy + Bearer auth
-├── models.ts         # 15 model definitions with pricing
+├── models.ts         # 16 model definitions with pricing
 ├── auth.ts           # API key resolution
 ├── logger.ts         # JSON usage logging
 ├── dedup.ts          # Response deduplication (prevents double-charge)

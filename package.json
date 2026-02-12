@@ -1,7 +1,7 @@
 {
   "name": "clawrouter-openrouter",
   "version": "0.4.0",
-  "description": "Smart LLM router for OpenRouter — save 78% on inference costs. 30+ models, intelligent routing.",
+  "description": "Smart LLM router for OpenRouter — save 78% on inference costs. 15+ models, intelligent routing.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

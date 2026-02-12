@@ -176,19 +176,19 @@ export const DEFAULT_ROUTING_CONFIG: RoutingConfig = {
   tiers: {
     SIMPLE: {
       primary: "google/gemini-2.5-flash-lite",
-      fallback: ["deepseek/deepseek-v3.2", "x-ai/grok-4.1-fast"],
+      fallback: ["openai/gpt-5-nano", "x-ai/grok-4.1-fast"],
     },
     MEDIUM: {
       primary: "google/gemini-3-flash-preview",
-      fallback: ["deepseek/deepseek-v3.2", "moonshotai/kimi-k2.5"],
+      fallback: ["deepseek/deepseek-v3.2", "minimax/minimax-m2.1"],
     },
     COMPLEX: {
-      primary: "anthropic/claude-opus-4.6",
-      fallback: ["openai/gpt-5.2", "google/gemini-3-pro-preview"],
+      primary: "anthropic/claude-sonnet-4.5",
+      fallback: ["moonshotai/kimi-k2.5", "openai/gpt-5.2"],
     },
     REASONING: {
-      primary: "anthropic/claude-opus-4.6",
-      fallback: ["openai/gpt-5.2", "google/gemini-3-pro-preview"],
+      primary: "google/gemini-3-pro-preview",
+      fallback: ["openai/gpt-5.1-codex", "anthropic/claude-opus-4.6"],
     },
   },
 

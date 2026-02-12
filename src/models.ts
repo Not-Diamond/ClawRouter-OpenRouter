@@ -195,7 +195,19 @@ export const ROUTER_MODELS: RouterModel[] = [
     vision: true,
   },
 
-  // #15 — OpenAI GPT-5.2
+  // #15 — OpenAI GPT-5.1 Codex
+  {
+    id: "openai/gpt-5.1-codex",
+    name: "GPT-5.1 Codex",
+    inputPrice: 1.25,
+    outputPrice: 10.0,
+    contextWindow: 400_000,
+    maxOutput: 128_000,
+    reasoning: true,
+    vision: true,
+  },
+
+  // #16 — OpenAI GPT-5.2
   {
     id: "openai/gpt-5.2",
     name: "GPT-5.2",
