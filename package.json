@@ -26,7 +26,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "tsup test/e2e.ts --format esm --outDir test/dist --no-dts --silent && node test/dist/e2e.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "llm",
@@ -41,7 +43,16 @@
     "gemini",
     "deepseek"
   ],
+  "author": "Not Diamond <engineering@notdiamond.ai> (https://notdiamond.ai)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Not-Diamond/SimpleClawRouter.git"
+  },
+  "homepage": "https://github.com/Not-Diamond/SimpleClawRouter#readme",
+  "bugs": {
+    "url": "https://github.com/Not-Diamond/SimpleClawRouter/issues"
+  },
   "dependencies": {},
   "peerDependencies": {
     "openclaw": ">=2025.1.0"
